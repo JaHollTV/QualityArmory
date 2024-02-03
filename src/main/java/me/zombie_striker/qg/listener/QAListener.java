@@ -900,10 +900,10 @@ public class QAListener implements Listener {
 
 				if(isCharged) {
 					QAMain.DEBUG("-------------Uncharge Gun-----------------");
-					nbtItem.setBoolean("Charged", true);
+					nbtItem.setBoolean("Charged", false);
 				} else {
 					QAMain.DEBUG("-------------Charge Gun-----------------");
-					nbtItem.setBoolean("Charged", false);
+					nbtItem.setBoolean("Charged", true);
 				}
 
 				gunItemStack = nbtItem.getItem();
