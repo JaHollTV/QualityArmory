@@ -892,13 +892,11 @@ public class QAListener implements Listener {
 				//TODO Jakob
 				QAMain.DEBUG("--------------Try aming gun animation------------------");
 
-				NBTContainer nbtContainer = NBTItem.convertItemtoNBT(e.getItem());
-				Boolean isCharged = nbtContainer.getBoolean("Charged");
-
 				ItemStack gunItemStack = e.getItem();
 				NBTItem nbtItem = new NBTItem(gunItemStack);
+				boolean isWeaponCharged = nbtItem.getBoolean("Charged");
 
-				if(isCharged) {
+				if(isWeaponCharged) {
 					QAMain.DEBUG("-------------Uncharge Gun-----------------");
 					nbtItem.setBoolean("Charged", false);
 				} else {
