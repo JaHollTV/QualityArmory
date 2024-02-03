@@ -1,5 +1,7 @@
 package me.zombie_striker.qg.listener;
 
+import de.tr7zw.changeme.nbtapi.NBTContainer;
+import de.tr7zw.changeme.nbtapi.NBTItem;
 import me.zombie_striker.customitemmanager.ArmoryBaseObject;
 import me.zombie_striker.customitemmanager.CustomBaseObject;
 import me.zombie_striker.customitemmanager.CustomItemManager;
@@ -886,6 +888,26 @@ public class QAListener implements Listener {
 					}
 				} catch (Error e2) {
 				}
+			} else {
+				//TODO Jakob
+				QAMain.DEBUG("--------------Try aming gun animation------------------");
+
+				NBTContainer nbtContainer = NBTItem.convertItemtoNBT(e.getItem());
+				Boolean isCharged = nbtContainer.getBoolean("Charged");
+
+				ItemStack gunItemStack = e.getItem();
+				NBTItem nbtItem = new NBTItem(gunItemStack);
+
+				if(isCharged) {
+					QAMain.DEBUG("-------------Uncharge Gun-----------------");
+					nbtItem.setBoolean("Charged", true);
+				} else {
+					QAMain.DEBUG("-------------Charge Gun-----------------");
+					nbtItem.setBoolean("Charged", false);
+				}
+
+				gunItemStack = nbtItem.getItem();
+				e.getItem().setItemMeta(gunItemStack.getItemMeta());
 			}
 			try {
 				if (!IronsightsHandler.isAiming(e.getPlayer()) && event.getPlayer().getInventory().getItemInOffHand().equals(e.getItem())) {
